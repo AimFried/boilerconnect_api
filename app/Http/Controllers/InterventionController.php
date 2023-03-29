@@ -22,8 +22,8 @@ class InterventionController extends Controller
         
         foreach (request('interventions') as $intervention){
             Intervention::create([
-                'intervener' =>$intervention['intervener'],
                 'name' => $intervention['name'],
+                'intervener' =>$intervention['intervener'],
                 'surname' => $intervention['surname'],
                 'address' => $intervention['address'],
                 'brand' => $intervention['brand'],
@@ -43,8 +43,8 @@ class InterventionController extends Controller
     public function update(Intervention $intervention)
     {
         request()->validate([
-            'intervener' => 'required',
             'name' => 'required',
+            'intervener' => 'required',
             'surname' => 'required',
             'address' => 'required',
             'brand' => 'required',
@@ -56,8 +56,8 @@ class InterventionController extends Controller
         ]);
 
         $success = $intervention->update([
-            'intervener' => request('intervener'),
             'name' => request('name'),
+            'intervener' => request('intervener'),
             'surname' => request('surname'),
             'address' => request('address'),
             'brand' => request('brand'),
