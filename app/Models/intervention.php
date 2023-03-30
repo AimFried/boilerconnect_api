@@ -13,3 +13,4 @@ class Intervention extends Model
         'intervener','name', 'surname', 'address', 'brand', 'boiler','dateEntryService','dateIntervention','serialNumber','description','duration'
     ];
 }
+ 
