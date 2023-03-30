@@ -26,10 +26,12 @@ use Illuminate\Support\Facades\Route;
 // 	return Post::all();
 // });
 
+Route::middleware(['cors'])->group(function () {
+    Route::get('/interventions', [InterventionController::class, 'index']);
+    Route::get('/intervention/{intervention}', [InterventionController::class, 'get']);
+    Route::post('/interventions', [InterventionController::class, 'store']);
+    Route::put('/intervention/{intervention}', [InterventionController::class, 'update']);
+    Route::delete('/intervention/{intervention}', [InterventionController::class, 'destroy']);
+});
 
 
-Route::get('/interventions', [InterventionController::class, 'index']);
-Route::get('/intervention/{intervention}', [InterventionController::class, 'get']);
-Route::post('/interventions', [InterventionController::class, 'store']);
-Route::put('/intervention/{intervention}', [InterventionController::class, 'update']);
-Route::delete('/intervention/{intervention}', [InterventionController::class, 'destroy']);
