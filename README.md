@@ -1,6 +1,6 @@
 # BoilerConnect - API
 
-<strong>API</strong> permettant de l'enregistrement et la consultation des interventions sur les différents support.
+<strong>API</strong> permettant l'enregistrement et la consultation des interventions sur différents support.
  - Version Web : https://www.github.com/aimfried/boilerconnect_web
  - Version Mobile : https://www.github.com/aimfried/boilerconnect_apk
 
