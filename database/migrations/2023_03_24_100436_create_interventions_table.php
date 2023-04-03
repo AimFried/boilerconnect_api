@@ -21,8 +21,8 @@ class CreateInterventionsTable extends Migration
             $table->string('address');
             $table->string('brand');
             $table->string('boiler');
-            $table->string('dateEntryService');
-            $table->string('dateIntervention');
+            $table->dateTime('dateEntryService');
+            $table->dateTime('dateIntervention');
             $table->string('serialNumber');
             $table->string('description');
             $table->string('duration');

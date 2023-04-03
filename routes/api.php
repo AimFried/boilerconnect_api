@@ -27,11 +27,17 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::middleware(['cors'])->group(function () {
-    Route::get('/interventions', [InterventionController::class, 'index']);
-    Route::get('/intervention/{intervention}', [InterventionController::class, 'get']);
-    Route::post('/interventions', [InterventionController::class, 'store']);
-    Route::put('/intervention/{intervention}', [InterventionController::class, 'update']);
-    Route::delete('/intervention/{intervention}', [InterventionController::class, 'destroy']);
+    Route::get('/dashboard/resume', [InterventionController::class, 'resume']);
+
+    Route::get('/interveners', [InterventionController::class, 'getInterveners']);
+
+    Route::get('/search', [InterventionController::class, 'search']);
+
+    Route::get('/interventions', [InterventionController::class, 'getAll']);
+    Route::get('/intervention/{intervention}', [InterventionController::class, 'getById']);
+    Route::post('/interventions', [InterventionController::class, 'create']);
+    Route::put('/intervention/{intervention}', [InterventionController::class, 'updateById']);
+    Route::delete('/intervention/{intervention}', [InterventionController::class, 'deleteById']);
 });
 
 

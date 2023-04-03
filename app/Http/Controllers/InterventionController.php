@@ -4,20 +4,68 @@ namespace App\Http\Controllers;
 
 use App\Models\Intervention;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class InterventionController extends Controller
 {
-    public function index()
+    private function getListInterveners() {
+        $index = 0;
+        $interveners = array();
+        //Lecture de toutes les interventions
+        foreach (Intervention::all() as $intervention){
+            $find = false;
+            //Lecture de tous les intervenants enregistrés
+            foreach ($interveners as $intervener){
+                if($intervener['name'] == $intervention['intervener']) {
+                    $find = true;
+                    break;
+                }
+            }
+            if($find == false) {
+                $interveners[$index]['name'] = $intervention['intervener'];
+                $interveners[$index]['totalInterventions'] = Intervention::where('intervener','=', $intervention['intervener'])->count();
+                $interveners[$index]['lastIntervention'] = Intervention::where('intervener','=', $intervention['intervener'])->orderBy('dateIntervention', 'DESC')->first()['dateIntervention'];
+            }
+            $index++;
+        }
+        return $interveners;
+    }
+
+    public function resume()
+    {
+        return json_encode([
+            'TotalInterventions' => Intervention::all()->count(),
+            'TodayInterventions' => Intervention::whereDate('dateIntervention','=',Carbon::today()->format('Y/m/d 00:00:00'))->count(),
+            'TotalInterveners' => count(InterventionController::getInterveners()),
+        ]);
+    }
+
+    public function search(Request $request) {
+        $q = $request->input('q');
+        $search = Intervention::where('serialNumber', 'like', "%{$q}%")->latest()->get();
+        return json_encode([
+            'search' => $search
+        ]);
+    }
+
+    public function getInterveners()
+    {
+        return json_encode([
+            'Interveners' => InterventionController::getListInterveners()
+        ]);
+    }
+
+    public function getAll()
     {
         return Intervention::all();
     }
 
-    public function get(Intervention $intervention)
+    public function getById(Intervention $intervention)
     {
         return $intervention;
     }
 
-    public function store()
+    public function create()
     {
         
         foreach (request('interventions') as $intervention){
@@ -28,8 +76,8 @@ class InterventionController extends Controller
                 'address' => $intervention['address'],
                 'brand' => $intervention['brand'],
                 'boiler' => $intervention['boiler'],
-                'dateEntryService' => $intervention['dateEntryService'],
-                'dateIntervention' => $intervention['dateIntervention'],
+                'dateEntryService' => new Carbon($intervention['dateEntryService']),
+                'dateIntervention' => new Carbon($intervention['dateIntervention']),
                 'serialNumber' => $intervention['serialNumber'],
                 'description' => $intervention['description'],
                 'duration' => $intervention['duration'],
@@ -40,7 +88,7 @@ class InterventionController extends Controller
         ]);
     }
 
-    public function update(Intervention $intervention)
+    public function updateById(Intervention $intervention)
     {
         request()->validate([
             'name' => 'required',
@@ -74,7 +122,7 @@ class InterventionController extends Controller
         ];
     }
 
-    public function destroy(Intervention $intervention)
+    public function deleteById(Intervention $intervention)
     {
         $success = $intervention->delete();
 
