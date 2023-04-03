@@ -36,7 +36,7 @@ class InterventionController extends Controller
         return json_encode([
             'TotalInterventions' => Intervention::all()->count(),
             'TodayInterventions' => Intervention::whereDate('dateIntervention','=',Carbon::today()->format('Y/m/d 00:00:00'))->count(),
-            'TotalInterveners' => count(InterventionController::getInterveners()),
+            'TotalInterveners' => count(InterventionController::getListInterveners()),
         ]);
     }
 
