@@ -10,10 +10,54 @@ class InterventionController extends Controller
 {
 
     public function search(Request $request) {
+        $fieldName = [];
         $q = $request->input('q');
-        $search = Intervention::where('serialNumber', 'like', "%{$q}%")->latest()->get();
+        $field = $request->input('by');
+
+        if($field) {
+            switch ($field) {
+                case 'intervener':
+                    $fieldName = ['Technicien','intervener'];
+                    break;
+                case 'name':
+                    $fieldName = ['Nom du client','name'];
+                    break;
+                case 'surname':
+                    $fieldName = ['Prénom du client','surname'];
+                    break;
+                case 'address':
+                    $fieldName = ['Adresse','address'];
+                    break;
+                case 'brand':
+                    $fieldName = ['Marque','brand'];
+                    break;
+                case 'boiler':
+                    $fieldName = ['Modèle','boiler'];
+                    break;
+                case 'dateEntryService':
+                    $fieldName = ['Adresse','dateEntryService'];
+                    break;
+                case 'dateIntervention':
+                    $fieldName = ['Marque','dateIntervention'];
+                    break;
+                case 'serialNumber':
+                    $fieldName = ['Modèle','serialNumber'];
+                    break;
+                case 'description':
+                    $fieldName = ['description','description'];
+                    break;
+                case 'duration':
+                    $fieldName = ['Durée','duration'];
+                    break;
+            }
+        } else {
+            $fieldName = ['Numéro de serie','serialNumber'];
+        }
+    
+        $search = Intervention::where($fieldName[1], 'like', "%{$q}%")->latest()->get();
         return json_encode([
             'search' => $q,
+            'by' => $fieldName[0],
             'interventions' => $search
         ]);
     }
