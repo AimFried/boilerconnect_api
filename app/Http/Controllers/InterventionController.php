@@ -8,82 +8,36 @@ use Carbon\Carbon;
 
 class InterventionController extends Controller
 {
-    private function getInterventionsByMonth() {
-
-        $interventionByMonth = [];
-        $interventionByMonth[0] = ['Mois','Intervention(s)'];
-
-        $month = array("Janvier","Fevrier","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Decembre");
-
-        for ($i=1; $i < count($month) ; $i++) { 
-            $numberOfMonthChecks = 0;
-            foreach (Intervention::all() as $dateIntervention){
-                if(Carbon::parse($dateIntervention['dateIntervention'])->format('m') == $i){
-                    $numberOfMonthChecks = $numberOfMonthChecks + 1;
-                };
-            };
-            $interventionByMonth[$i] = [$month[$i - 1],$numberOfMonthChecks];
-        };
-        
-        return $interventionByMonth;
-    }
-
-    private function getListInterveners() {
-        $index = 0;
-        $interveners = array();
-        //Lecture de toutes les interventions
-        foreach (Intervention::all() as $intervention){
-            $find = false;
-            //Lecture de tous les intervenants enregistrés
-            foreach ($interveners as $intervener){
-                if($intervener['name'] == $intervention['intervener']) {
-                    $find = true;
-                    break;
-                }
-            }
-            if($find == false) {
-                $interveners[$index]['name'] = $intervention['intervener'];
-                $interveners[$index]['totalInterventions'] = Intervention::where('intervener','=', $intervention['intervener'])->count();
-                $interveners[$index]['lastIntervention'] = Intervention::where('intervener','=', $intervention['intervener'])->orderBy('dateIntervention', 'DESC')->first()['dateIntervention'];
-            }
-            $index++;
-        }
-        return $interveners;
-    }
-
-    public function resume()
-    {
-        return json_encode([
-            'TotalInterventions' => Intervention::all()->count(),
-            'TodayInterventions' => Intervention::whereDate('dateIntervention','=',Carbon::today()->format('Y/m/d 00:00:00'))->count(),
-            'TotalInterveners' => count(InterventionController::getListInterveners()),
-            'InterventionsByMonth' => InterventionController::getInterventionsByMonth()
-        ]);
-    }
 
     public function search(Request $request) {
         $q = $request->input('q');
         $search = Intervention::where('serialNumber', 'like', "%{$q}%")->latest()->get();
         return json_encode([
-            'search' => $search
+            'search' => $q,
+            'interventions' => $search
         ]);
     }
 
-    public function getInterveners()
+    public function get(Request $request)
     {
-        return json_encode([
-            'Interveners' => InterventionController::getListInterveners()
-        ]);
-    }
-
-    public function getAll()
-    {
-        return Intervention::all();
-    }
-
-    public function getById(Intervention $intervention)
-    {
-        return $intervention;
+      
+        if($request->input('id')) {
+            //By Id
+            return json_encode([
+                'intervention' => Intervention::where('id','=',$request->input('id'))->get()
+            ]);
+        } else if($request->input('intervener')){
+            //By Intervener name
+            return json_encode([
+                'intervener' => $request->input('intervener'),
+                'interventions' => Intervention::where('intervener','=',$request->input('intervener'))->get(),
+            ]);
+        } else {
+            //All
+            return json_encode([
+                'interventions' => Intervention::all()
+            ]);
+        }
     }
 
     public function create()
