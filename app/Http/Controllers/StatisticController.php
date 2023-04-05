@@ -8,7 +8,7 @@ use Carbon\Carbon;
 
 class StatisticController extends Controller
 {
-    public function statistics()
+    public function get()
     {
         return json_encode([
             'totalInterventions' => Intervention::all()->count(),

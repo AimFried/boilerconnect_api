@@ -35,13 +35,13 @@ class InterventionController extends Controller
                     $fieldName = ['Modèle','boiler'];
                     break;
                 case 'dateEntryService':
-                    $fieldName = ['Adresse','dateEntryService'];
+                    $fieldName = ['Date de mise en service','dateEntryService'];
                     break;
                 case 'dateIntervention':
-                    $fieldName = ['Marque','dateIntervention'];
+                    $fieldName = ['Date intervention','dateIntervention'];
                     break;
                 case 'serialNumber':
-                    $fieldName = ['Modèle','serialNumber'];
+                    $fieldName = ['Numéro de série','serialNumber'];
                     break;
                 case 'description':
                     $fieldName = ['description','description'];
@@ -55,6 +55,9 @@ class InterventionController extends Controller
         }
     
         $search = Intervention::where($fieldName[1], 'like', "%{$q}%")->latest()->get();
+        if(count($search) == 0){
+            $search = null;
+        }
         return json_encode([
             'search' => $q,
             'by' => $fieldName[0],
@@ -105,40 +108,6 @@ class InterventionController extends Controller
         return json_encode([
             'success' => 'success'
         ]);
-    }
-
-    public function updateById(Intervention $intervention)
-    {
-        request()->validate([
-            'name' => 'required',
-            'intervener' => 'required',
-            'surname' => 'required',
-            'address' => 'required',
-            'brand' => 'required',
-            'boiler' => 'required',
-            'dateEntryService' => 'required',
-            'dateIntervention' => 'required',
-            'serialNumber' => 'required',
-            'duration' => 'required',
-        ]);
-
-        $success = $intervention->update([
-            'name' => request('name'),
-            'intervener' => request('intervener'),
-            'surname' => request('surname'),
-            'address' => request('address'),
-            'brand' => request('brand'),
-            'boiler' => request('boiler'),
-            'dateEntryService' => request('dateEntryService'),
-            'dateIntervention' => request('dateIntervention'),
-            'serialNumber' => request('serialNumber'),
-            'description' => request('description'),
-            'duration' => request('duration'),
-        ]);
-
-        return [
-            'success' => $success
-        ];
     }
 
     public function deleteById(Intervention $intervention)
