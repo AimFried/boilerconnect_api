@@ -1,20 +1,46 @@
-# BoilerConnect - API
+<div align="center">
+    <img src="http://boilerconnect.ddns.net/logo.png" alt="Logo" width="100" height="100">
 
-<strong>API</strong> permettant l'enregistrement et la consultation des interventions sur différents support.
- - Version Web : https://www.github.com/aimfried/boilerconnect_web
- - Version Mobile : https://www.github.com/aimfried/boilerconnect_apk
+  <h3 align="center">BoilerConnect</h3>
+
+  <p align="center">
+    Gestionnaire de raport d'intervention pour des chaudières.
+    <br />
+    <a href="https://github.com/AimFried/boilerconnect_api"><strong>Documentation</strong></a>
+    <br />
+    <br />
+    <p align="center">Supports</p>
+    <a href="https://github.com/AimFried/boilerconnect_web">Web</a>
+    ·
+    <a href="https://github.com/AimFried/boilerconnect_api">API</a>
+    ·
+    <a href="https://github.com/AimFried/boilerconnect_apk">Android</a>
+  </p>
+</div>
+
+# API
+
+Permet de mettre à disposition une interface d'interaction entre les différents supports.
 
 ## 📦 Prérequis
 
-Avoir au prélable installer un serveur LAMP ou MAMP. <br >
-Avoir installer composer et Laravel. <br >
+1. Avoir au prélable installer un serveur web comprenant :
+* Apache
+* MySQL
+* PHP
+* Composer
+* Laravel
+2. Avoir installer la version <a href="https://github.com/AimFried/boilerconnect_apk">Android</a> sur son téléphone.
+
 
 ## :bookmark_tabs: Installation
 
-Télécharger le dépot. <br >
+1. Télécharger le dépot <br >
 
 ## 🛠️ Configuration
- 
+
+* MySQL connection
+S'assurer avoir correctement relié Laravel avec votre serveur de base de données.
 ## 🤠 Auteur
 
 - [@aimfried](https://www.github.com/aimfried])
