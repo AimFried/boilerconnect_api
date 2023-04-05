@@ -24,7 +24,7 @@ Permet de mettre à disposition une interface d'interaction entre les différent
 
 ## 📦 Prérequis
 
-1. Avoir au prélable installer un serveur web comprenant :
+1. Avoir au préalable installer un serveur web comprenant :
 * Apache
 * MySQL
 * PHP
