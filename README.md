@@ -4,7 +4,7 @@
   <h3 align="center">BoilerConnect</h3>
 
   <p align="center">
-    Système de gestion de raport d'intervention pour chaudières.
+     Système de gestion de rapports d'intervention pour chaudières
     <br />
     <a href="https://github.com/AimFried/boilerconnect_api"><strong>Documentation</strong></a>
     <br />
