@@ -46,12 +46,12 @@
             <div class="row g-0">
                 <div class="col-12 text-center">
                     <h4>Documentation</h4>
-                    <a href="https://github.com/AimFried/boilerconnect_web">Configuration</a><br >
+                    <a href="https://github.com/AimFried/boilerconnect_api">API</a><br >
                 </div>
                 <div class="col-12 text-center">
                     <h4>Supports disponibles</h4>
-                    <a href="https://github.com/AimFried/boilerconnect_web">Interface Web</a><br >
-                    <a href="https://github.com/AimFried/boilerconnect_apk">Application Mobile(Android)</a>
+                    <a href="https://github.com/AimFried/boilerconnect_web">Web</a><br >
+                    <a href="https://github.com/AimFried/boilerconnect_apk">Android</a>
                 </div>
             </div>
         </div>
