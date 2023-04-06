@@ -4,7 +4,7 @@
   <h3 align="center">BoilerConnect</h3>
 
   <p align="center">
-    Gestionnaire de raport d'intervention pour des chaudières.
+     Système de gestion de rapports d'intervention pour chaudières
     <br />
     <a href="https://github.com/AimFried/boilerconnect_api"><strong>Documentation</strong></a>
     <br />
@@ -24,7 +24,7 @@ Permet de mettre à disposition une interface d'interaction entre les différent
 
 ## 📦 Prérequis
 
-1. Avoir au prélable installer un serveur web comprenant :
+1. Avoir au préalable installé un serveur web comprenant :
 * Apache
 * MySQL
 * PHP
