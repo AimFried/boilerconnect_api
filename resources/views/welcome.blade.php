@@ -27,6 +27,14 @@
                 margin-top: 10px;
                 padding: 0 1%;
             }
+            @media (max-width: 768px) {
+                .content {
+                    margin: 2% 5%;
+                }
+                .app-information {
+                    margin: 0 5%;
+                }
+             }
         </style>
     </head>
     <body>
@@ -44,11 +52,11 @@
         </div>
         <div class="content">
             <div class="row g-0">
-                <div class="col-12 text-center">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center">
                     <h4>Documentation</h4>
                     <a href="https://github.com/AimFried/boilerconnect_api">API</a><br >
                 </div>
-                <div class="col-12 text-center">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center">
                     <h4>Supports disponibles</h4>
                     <a href="https://github.com/AimFried/boilerconnect_web">Web</a><br >
                     <a href="https://github.com/AimFried/boilerconnect_apk">Android</a>
