@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Modeles\Intervention;
-use Illuminate\Http\Request;
+use Illuminate\Http\Request; 
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['cors'])->group(function () {
