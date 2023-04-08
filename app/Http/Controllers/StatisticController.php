@@ -12,7 +12,7 @@ class StatisticController extends Controller
     {
         return json_encode([
             'totalInterventions' => Intervention::all()->count(),
-            'todayInterventions' => Intervention::whereDate('dateIntervention','=',Carbon::today()->format('Y-d-m 00:00:00'))->count(),
+            'todayInterventions' => Intervention::whereDate('dateIntervention','=',Carbon::today()->format('Y-m-d 00:00:00'))->count(),
             'totalInterveners' => count(UtilsController::getListInterveners()),
             'interventionsByMonth' => UtilsController::getInterventionsByMonth()
         ]);
