@@ -89,7 +89,6 @@ class InterventionController extends Controller
 
     public function create()
     {
-        
         foreach (request('interventions') as $intervention){
             Intervention::create([
                 'name' => $intervention['name'],
