@@ -35,11 +35,11 @@ Permet de mettre à disposition une interface d'interaction entre les différent
 
 ## :bookmark_tabs: Installation
 
-1. Télécharger le dépot <br >
+1. Télécharger le dépôt <br >
 
 ## 🛠️ Configuration
 
-* MySQL connection
+* MySQL
 S'assurer avoir correctement relié Laravel avec votre serveur de base de données.
 ## 🤠 Auteur
 
